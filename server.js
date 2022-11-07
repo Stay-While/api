@@ -17,9 +17,9 @@ app.use(bodyParser.json());
 
 // routes
 const usersRoute = require("./routes/users");
-const countRoute = require("./routes/count");
+const residenceRoute = require("./routes/residences");
 app.use("/users", usersRoute);
-app.use("/c", countRoute);
+app.use("/residences", residenceRoute);
 
 app.get("/", (req, res) => {
   const obj = [{ name: "hello" }];

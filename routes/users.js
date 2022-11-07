@@ -4,7 +4,7 @@ const User = require("../models/User");
 const router = express.Router();
 
 // adds a user to users database
-router.post("/addUser", async (req, res) => {
+router.post("/add", async (req, res) => {
   try {
     const newUser = new User({
       username: req.body.username,
@@ -20,7 +20,7 @@ router.post("/addUser", async (req, res) => {
 });
 
 // gets all users from the database
-router.get("/getUsers", async (req, res) => {
+router.get("/all", async (req, res) => {
   try {
     User.find({}, function (err, users) {
       let userMap = {};
@@ -31,6 +31,17 @@ router.get("/getUsers", async (req, res) => {
 
       res.send(userMap);
     });
+  } catch (error) {
+    console.log(error);
+    res.status(304).json(error);
+  }
+});
+
+// gets a specific user from the database
+router.get("/:username", async (req, res) => {
+  try {
+    const user = await User.findOne({ username: req.params.username });
+    res.send(user);
   } catch (error) {
     console.log(error);
     res.status(304).json(error);
