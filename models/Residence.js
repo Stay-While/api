@@ -21,6 +21,10 @@ const ResidenceSchema = mongoose.Schema({
     type: Number,
     minimum: 0,
   },
+  image: {
+    type: String,
+    required: true,
+  },
   tenants: [
     {
       name: {

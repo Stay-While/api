@@ -12,6 +12,7 @@ router.post("/add", async (req, res) => {
       price: req.body.price,
       amount: req.body.amount,
       amountLeft: req.body.amountLeft,
+      image: req.body.image,
       tenants: [],
     });
     const residence = await newResidence.save();
