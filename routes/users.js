@@ -22,15 +22,8 @@ router.post("/add", async (req, res) => {
 // gets all users from the database
 router.get("/all", async (req, res) => {
   try {
-    User.find({}, function (err, users) {
-      let userMap = {};
-
-      users.forEach(function (user) {
-        userMap[user._id] = user;
-      });
-
-      res.send(userMap);
-    });
+    const user = await User.find();
+    res.status(200).json(user);
   } catch (error) {
     console.log(error);
     res.status(304).json(error);
@@ -41,7 +34,7 @@ router.get("/all", async (req, res) => {
 router.get("/:username", async (req, res) => {
   try {
     const user = await User.findOne({ username: req.params.username });
-    res.send(user);
+    res.status(200).json(user);
   } catch (error) {
     console.log(error);
     res.status(304).json(error);
