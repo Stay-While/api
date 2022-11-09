@@ -48,12 +48,9 @@ router.get("/:owner", async (req, res) => {
 // update a specific residence from the database
 router.patch("/update/:owner", async (req, res) => {
   try {
-    const updatedResidence = await Residence.findOne(
+    const updatedResidence = await Residence.updateOne(
       { owner: req.params.owner },
-      { $set },
-      {
-        amountLeft: req.body.amountLeft,
-      }
+      { $set: { amountLeft: req.body.amountLeft } }
     );
     res.status(200).json(updatedResidence);
   } catch (error) {
