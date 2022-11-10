@@ -30,5 +30,6 @@ app.get("/", (req, res) => {
 // run server
 const PORT = process.env.PORT || 8989;
 app.listen(PORT, () => {
+  console.log(process.env.MONGO_URI);
   console.log(`server listening at port ${PORT}`);
 });
