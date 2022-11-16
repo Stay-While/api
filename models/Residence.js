@@ -31,6 +31,10 @@ const ResidenceSchema = mongoose.Schema({
         type: String,
         required: true,
       },
+      licensePlate: {
+        type: String,
+        required: true,
+      },
       permitExpiresOn: {
         type: Number,
         required: true,

@@ -81,6 +81,7 @@ router.patch("/addTenant/:owner", async (req, res) => {
   try {
     const tenant = {
       name: req.body.name,
+      licensePlate: req.body.licensePlate,
       permitExpiresOn: req.body.permitExpiresOn,
     };
     const updatedResidence = await Residence.updateOne(
