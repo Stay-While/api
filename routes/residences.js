@@ -100,7 +100,7 @@ router.patch("/addTenant/:owner", async (req, res) => {
       { $push: { tenants: tenant } }
     );
 
-    const updatedUser = await User.updateOne({ name: req.body.name }, { $set: carInfo });
+    const updatedUser = await User.updateOne({ username: req.body.name }, { $set: carInfo });
 
     res.status(200).json(updatedResidence);
   } catch (error) {
