@@ -15,6 +15,22 @@ const UserSchema = mongoose.Schema({
     required: true,
     enum: ["Tenant", "Landlord"],
   },
+  licensePlate: {
+    type: String,
+    default: "",
+  },
+  carColor: {
+    type: String,
+    default: "",
+  },
+  carModel: {
+    type: String,
+    default: "",
+  },
+  carVin: {
+    type: String,
+    default: "",
+  },
 });
 
 module.exports = mongoose.model("Users", UserSchema);

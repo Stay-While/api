@@ -1,5 +1,6 @@
 const express = require("express");
 const Residence = require("../models/Residence");
+const User = require("../models/User");
 const multer = require("multer");
 const router = express.Router();
 
@@ -84,12 +85,23 @@ router.patch("/addTenant/:owner", async (req, res) => {
       licensePlate: req.body.licensePlate,
       permitExpiresOn: req.body.permitExpiresOn,
     };
+
+    const carInfo = {
+      licensePlate: req.body.licensePlate,
+      carColor: req.body.carColor,
+      carModel: req.body.carModel,
+      carVin: req.body.carVin,
+    };
+
     const updatedResidence = await Residence.updateOne(
       {
         owner: req.params.owner,
       },
       { $push: { tenants: tenant } }
     );
+
+    const updatedUser = await User.updateOne({ name: req.body.name }, { $set: carInfo });
+
     res.status(200).json(updatedResidence);
   } catch (error) {
     console.log(error);
